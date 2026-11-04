@@ -999,6 +999,11 @@
       <form id="rsvp">
         <h3>Xác nhận tham dự</h3>
         <label for="rName">Họ và tên</label><input type="text" id="rName" required placeholder="Nhập tên của bạn">
+        <span>Bạn là khách của?</span>
+        <div style="display:flex;gap:24px;margin-bottom:2px">
+          <label class="radio"><input type="radio" name="side" id="side1" value="Nhà trai" checked> 🤵 Nhà trai</label>
+          <label class="radio"><input type="radio" name="side" id="side2" value="Nhà gái"> 👰 Nhà gái</label>
+        </div>
         <span>Bạn sẽ tham dự chứ?</span>
         <label class="radio"><input type="radio" name="go" id="go1" checked> Có, tôi sẽ tham dự</label>
         <label class="radio"><input type="radio" name="go" id="go2"> Tôi bận, rất tiếc không thể tham dự</label>
@@ -1146,14 +1151,13 @@
       e.preventDefault();
       ok.hidden = false;
       const go = $('go1').checked;
+      const sideVal = $('side2')?.checked ? 'Nhà gái' : 'Nhà trai';
       const isFar = checkFarGuest();
       const submitBtn = $('rsvp').querySelector('button[type="submit"]');
       const nameVal = rName.value.trim().slice(0, 80);
       const areaText = isFar ? 'Khách ở xa' : 'Khách ở quê';
       const busText = !go ? 'Không' : (isFar ? ($('bus1').checked ? 'Đi cùng đoàn xe' : 'Tự túc di chuyển') : 'Tại quê');
-      const statusText = go
-        ? (isFar ? `Tham gia (Ở xa - ${busText})` : 'Tham gia (Ở quê)')
-        : (isFar ? 'Không tham gia (Ở xa)' : 'Không tham gia (Ở quê)');
+      const statusText = go ? 'Tham gia' : 'Không tham gia';
       const countVal = go ? rNum.value : '0 người';
       const timestamp = new Date().toLocaleString('vi-VN');
 
@@ -1165,6 +1169,7 @@
           const formData = new URLSearchParams();
           formData.append('timestamp', timestamp);
           formData.append('name', nameVal);
+          formData.append('side', sideVal);
           formData.append('status', statusText);
           formData.append('count', countVal);
           formData.append('area', areaText);

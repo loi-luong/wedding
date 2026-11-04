@@ -4,9 +4,10 @@
 <head>
   <meta charset=utf8>
   <meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="color-scheme" content="light only">
   <style>
     :root {
-      color-scheme: light;
+      color-scheme: light only;
       box-sizing: border-box;
       padding-top: env(safe-area-inset-top, 0px);
       padding-bottom: env(safe-area-inset-bottom, 0px)
@@ -64,34 +65,6 @@
       --f-script: "Great Vibes", cursive;
       --f-serif: "Lora", Georgia, serif;
       --f-body: "Nunito", system-ui, sans-serif;
-    }
-
-    @media (prefers-color-scheme:dark) {
-      :root:not([data-theme="light"]) {
-        --bg: #1c0e13;
-        --paper: #2a161c;
-        --ink: #fbecef;
-        --muted: #d6a3b0;
-        --red: #ff4d63;
-        --pink: #ff7f9c;
-        --soft: #4a2230;
-        --line: #4a2530;
-        --note: #3a2a22;
-        color-scheme: dark
-      }
-    }
-
-    :root[data-theme="dark"] {
-      --bg: #1c0e13;
-      --paper: #2a161c;
-      --ink: #fbecef;
-      --muted: #d6a3b0;
-      --red: #ff4d63;
-      --pink: #ff7f9c;
-      --soft: #4a2230;
-      --line: #4a2530;
-      --note: #3a2a22;
-      color-scheme: dark
     }
 
     html,
